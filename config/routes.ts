@@ -56,6 +56,38 @@
                 component: './TableList',
               },
               {
+                path: '/demo',
+                icon: 'table',
+                component: './Demo',
+                name: 'demo',
+              },
+              {
+                path: '/cloud',
+                icon: 'table',
+                name: 'cloud',
+                routes: [
+                  {
+                    path: '/cloud',
+                    icon: 'table',
+                    component: './Cloud',
+                  },
+                  {
+                    path: '/cloud/project-detail',
+                    name: 'project-detail',
+                    icon: 'smile',
+                    component: './Cloud/projectDetail',
+                    hideInMenu: true,
+                  },
+                  {
+                    path: '/cloud/project-detail/api-detail',
+                    name: 'api-detail',
+                    icon: 'smile',
+                    component: './Cloud/apiDetail',
+                    hideInMenu: true,
+                  },
+                ],
+              },
+              {
                 component: './404',
               },
             ],

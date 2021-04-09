@@ -5,4 +5,11 @@ module.exports = {
     page: true,
     REACT_APP_ENV: true,
   },
+  rules: {
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+
+    // "no-use-before-define": [0],
+    // "@typescript-eslint/no-use-before-define": [1]
+  },
 };

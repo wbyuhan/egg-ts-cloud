@@ -145,13 +145,10 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         },
         ...routers,
       ]}
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       itemRender={(route, params, routes, paths) => {
-        const first = routes.indexOf(route) === 0;
-        return first ? (
-          <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
-        ) : (
-          <span>{route.breadcrumbName}</span>
-        );
+        // const first = routes.indexOf(route) === 0;
+        return <Link to={route.path}>{route.breadcrumbName}</Link>;
       }}
       footerRender={() => {
         if (settings.footerRender || settings.footerRender === undefined) {

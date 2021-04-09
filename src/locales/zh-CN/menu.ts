@@ -1,5 +1,9 @@
 export default {
   'menu.welcome': '欢迎',
+  'menu.demo': '测试页面',
+  'menu.cloud': '云文档平台',
+  'menu.cloud.project-detail': '项目详情',
+  'menu.cloud.api-detail': '具体接口详情',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.admin': '管理页',
