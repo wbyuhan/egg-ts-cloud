@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 
 interface RegisterProps {
@@ -13,9 +13,18 @@ const formItemLayout = {
 const Register: React.FC<RegisterProps> = (props) => {
   const { onSubmit } = props;
   const [form] = Form.useForm();
+  const [error, setError] = useState<null | string>(null);
 
   // 注册
   const onFinish = (values: any) => {
+    const { password, samePassword } = values;
+    if (password !== samePassword) {
+      setError('两次密码不一致,请重新输入');
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+      return;
+    }
     if (onSubmit) {
       onSubmit(values);
     }
@@ -39,6 +48,9 @@ const Register: React.FC<RegisterProps> = (props) => {
         />
         注册
       </h1>
+      {error && (
+        <span style={{ color: '#ff4d4f', display: 'block', textAlign: 'center' }}>{error}</span>
+      )}
       <Form form={form} onFinish={onFinish} {...formItemLayout}>
         <Form.Item
           name="email"
@@ -56,10 +68,18 @@ const Register: React.FC<RegisterProps> = (props) => {
         >
           <Input placeholder="请输入邮箱" />
         </Form.Item>
-        <Form.Item name="password" label="密码">
+        <Form.Item
+          name="password"
+          label="密码"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
           <Input.Password placeholder="请输入密码" />
         </Form.Item>
-        <Form.Item name="samePassword" label="确认密码">
+        <Form.Item
+          name="samePassword"
+          label="确认密码"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
           <Input.Password placeholder="再次输入密码" />
         </Form.Item>
         <Form.Item wrapperCol={{ span: 14, offset: 5 }}>

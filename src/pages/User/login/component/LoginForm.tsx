@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
+import type { LoginParamsType } from '@/services/login';
 
 interface LoginProps {
+  loginData?: LoginParamsType;
   onSubmit: (val: any) => void;
 }
 
@@ -11,8 +13,18 @@ const formItemLayout = {
 };
 
 const LoginForm: React.FC<LoginProps> = (props) => {
-  const { onSubmit } = props;
+  const { loginData, onSubmit } = props;
   const [form] = Form.useForm();
+  useEffect(() => {
+    if (loginData) {
+      form.setFieldsValue({
+        email: loginData?.email,
+        password: loginData?.password,
+      });
+    }
+    return () => {};
+  }, [form, loginData]);
+
   // 登陆
   const onFinish = (values: any) => {
     if (onSubmit) {

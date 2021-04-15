@@ -2,14 +2,15 @@ import { stringify } from 'querystring';
 import type { Reducer, Effect } from 'umi';
 import { history } from 'umi';
 
-import { fakeAccountLogin } from '@/services/login';
+import { fakeAccountLogin, register } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery, setToken } from '@/utils/utils';
-import { message } from 'antd';
+import { message, notification } from 'antd';
 
 export type StateType = {
-  status?: 'ok' | 'error';
+  status?: 'ok' | 'file' | 'succeed';
   type?: string;
+  registerStatus?: boolean;
   currentAuthority?: 'user' | 'guest' | 'admin';
 };
 
@@ -19,9 +20,11 @@ export type LoginModelType = {
   effects: {
     login: Effect;
     logout: Effect;
+    register: Effect;
   };
   reducers: {
     changeLoginStatus: Reducer<StateType>;
+    changeRegisterStatus: Reducer<StateType>;
   };
 };
 
@@ -35,11 +38,6 @@ const Model: LoginModelType = {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
-      console.log(
-        '%c 🍔 response: ',
-        'font-size:20px;background-color: #2EAFB0;color:#fff;',
-        response,
-      );
       yield put({
         type: 'changeLoginStatus',
         payload: response,
@@ -67,6 +65,25 @@ const Model: LoginModelType = {
           }
         }
         history.replace(redirect || '/');
+      } else if (response.status === 'faile') {
+        notification.error({
+          message: '登陆失败',
+          description: `${response.errorMsg}`,
+        });
+      }
+    },
+
+    *register({ payload }, { call, put }) {
+      const response = yield call(register, payload);
+      yield put({
+        type: 'changeRegisterStatus',
+        payload: response,
+      });
+      if (response.status === 'faile') {
+        message.error(`${response.errorMsg}`);
+      }
+      if (response.status === 'succeed') {
+        message.success(`${response.succeed}`);
       }
     },
 
@@ -91,6 +108,15 @@ const Model: LoginModelType = {
         ...state,
         status: payload.status,
         type: payload.type,
+        registerStatus: payload.code === 200,
+      };
+    },
+    changeRegisterStatus(state, { payload }) {
+      return {
+        ...state,
+        status: payload.status,
+        type: payload.type,
+        registerStatus: payload.code === 200,
       };
     },
   },
