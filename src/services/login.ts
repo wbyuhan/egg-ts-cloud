@@ -1,10 +1,11 @@
 import request from '@/utils/request';
 
 export type LoginParamsType = {
-  userName: string;
+  email: string;
   password: string;
-  mobile: string;
-  captcha: string;
+};
+export declare type RegisterParamsType = LoginParamsType & {
+  samePassword: string;
 };
 
 export async function fakeAccountLogin(params: LoginParamsType) {

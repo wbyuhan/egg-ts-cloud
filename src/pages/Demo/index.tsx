@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Input, Space } from 'antd';
+
 import Wycloud from './components/wycloud';
 
 import './index.less';
@@ -9,6 +10,7 @@ function Demo(props: DemoProps) {
   console.log('%c 🥩 props: ', 'font-size:20px;background-color: #465975;color:#fff;', props);
   const ref = useRef<number[] | any>();
   const [, setStateName] = useState<string | any>('');
+
   let flag = 'a';
   useEffect(() => {
     console.log(
@@ -42,6 +44,7 @@ function Demo(props: DemoProps) {
       reject(dom());
     });
   };
+
   return (
     <div className="Demo">
       {console.log(ref.current)}

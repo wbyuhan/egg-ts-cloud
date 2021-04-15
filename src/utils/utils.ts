@@ -22,3 +22,13 @@ export const isAntDesignProOrDev = (): boolean => {
 };
 
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);
+
+export const setToken = (token: string) => {
+  const userToken = JSON.stringify(token);
+  sessionStorage.setItem('userToken', userToken);
+};
+
+export const getToken = () => {
+  const userToken: any = sessionStorage.getItem('userToken');
+  return JSON.parse(userToken);
+};

@@ -2,7 +2,8 @@
 
 .container {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
   overflow: auto;
   background: @layout-body-background;
@@ -32,7 +33,21 @@
   }
 
   .content {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 32px 0 24px;
+  }
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    width: 600px;
+    height: 600px;
+    overflow: hidden;
+    background-color: rgb(133, 110, 110);
+    border-radius: 3px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 15%);
   }
 }
 

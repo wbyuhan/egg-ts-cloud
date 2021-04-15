@@ -1,11 +1,12 @@
 @import '~antd/es/style/themes/default.less';
 
 .main {
-  width: 328px;
+  z-index: 9;
+  width: 476px;
   margin: 0 auto;
   @media screen and (max-width: @screen-sm) {
     width: 95%;
-    max-width: 328px;
+    max-width: 476px;
   }
 
   :global {
@@ -40,5 +41,17 @@
   .prefixIcon {
     color: @primary-color;
     font-size: @font-size-base;
+  }
+  .loginTap {
+    color: #1890ff;
+    font-size: 14px;
+    text-align: right;
+    cursor: pointer;
+  }
+  .registerTap {
+    color: #1890ff;
+    font-size: 14px;
+    text-align: right;
+    cursor: pointer;
   }
 }
