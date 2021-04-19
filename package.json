@@ -70,7 +70,8 @@
     "react-dom": "^17.0.0",
     "react-helmet-async": "^1.0.4",
     "umi": "^3.2.14",
-    "umi-request": "^1.0.8"
+    "umi-request": "^1.0.8",
+    "zip-webpack-plugin": "^4.0.1"
   },
   "devDependencies": {
     "@ant-design/pro-cli": "^1.0.28",
@@ -82,6 +83,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-helmet": "^6.1.0",
+    "@types/zip-webpack-plugin": "^3.0.2",
     "@umijs/fabric": "^2.5.1",
     "@umijs/plugin-blocks": "^2.0.5",
     "@umijs/plugin-esbuild": "^1.0.1",
