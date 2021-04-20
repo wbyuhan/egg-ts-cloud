@@ -63,7 +63,7 @@ const Login: React.FC<LoginProps> = (props) => {
         )}
         {type === 'login' && (
           <p className={styles.registerTap} onClick={() => setType('register')}>
-            未注册，去注册ba1啊啊啊
+            未注册，去注册ba1
           </p>
         )}
       </Spin>
