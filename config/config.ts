@@ -1,6 +1,6 @@
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
-import ZipPlugin from 'zip-webpack-plugin';
+// import ZipPlugin from 'zip-webpack-plugin';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
@@ -43,14 +43,14 @@ export default defineConfig({
   },
   esbuild: {},
   // 打包
-  chainWebpack(memo, { env }) {
-    if (env === 'production') {
-      memo.plugin('build').use(ZipPlugin, [
-        {
-          path: '../build',
-          filename: 'build.zip',
-        },
-      ]);
-    }
-  },
+  // chainWebpack(memo, { env }) {
+  //   if (env === 'production') {
+  //     memo.plugin('build').use(ZipPlugin, [
+  //       {
+  //         path: '../build',
+  //         filename: 'build.zip',
+  //       },
+  //     ]);
+  //   }
+  // },
 });
