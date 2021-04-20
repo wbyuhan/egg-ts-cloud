@@ -19,7 +19,6 @@ export type LoginProps = {
 
 const Login: React.FC<LoginProps> = (props) => {
   const { submitting = false, rejectting = false, userLogin, dispatch } = props;
-  console.log('%c 🍷 props: ', 'font-size:20px;background-color: #F5CE50;color:#fff;', props);
   const { registerStatus } = userLogin;
   const [type, setType] = useState<string>('register'); // login,register
   const [loginData, setLoginData] = useState<any | undefined>(undefined);
