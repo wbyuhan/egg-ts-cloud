@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { history } from 'umi';
+import { PlusOutlined } from '@ant-design/icons';
 import { Card, Space, Row, Col, List, Button } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 
@@ -14,6 +15,7 @@ interface ListContentProps {
   moduleName: string;
   method: string;
   changeTime: string;
+  apiId?: string | number;
 }
 
 const list = [
@@ -24,12 +26,100 @@ const list = [
     moduleName: '模块名称',
     method: 'post',
     changeTime: '2020-09-09 16:15',
+    apiId: 2,
+  },
+  {
+    api: 'https://coe.99bill.com/coral/business/orgInfo/getTrustbrandInfo',
+    version: '1.0',
+    name: '产品信息查询',
+    moduleName: '模块名称',
+    method: 'post',
+    changeTime: '2020-09-09 16:15',
+    apiId: 2,
+  },
+  {
+    api: 'https://coe.99bill.com/coral/business/orgInfo/getTrustbrandInfo',
+    version: '1.0',
+    name: '产品信息查询',
+    moduleName: '模块名称',
+    method: 'post',
+    changeTime: '2020-09-09 16:15',
+    apiId: 4,
+  },
+  {
+    api: 'https://coe.99bill.com/coral/business/orgInfo/getTrustbrandInfo',
+    version: '1.0',
+    name: '产品信息查询',
+    moduleName: '模块名称',
+    method: 'post',
+    changeTime: '2020-09-09 16:15',
+    apiId: 5,
+  },
+  {
+    api: 'https://coe.99bill.com/coral/business/orgInfo/getTrustbrandInfo',
+    version: '1.0',
+    name: '产品信息查询',
+    moduleName: '模块名称',
+    method: 'post',
+    changeTime: '2020-09-09 16:15',
+    apiId: 6,
+  },
+  {
+    api: 'https://coe.99bill.com/coral/business/orgInfo/getTrustbrandInfo',
+    version: '1.0',
+    name: '产品信息查询',
+    moduleName: '模块名称',
+    method: 'post',
+    changeTime: '2020-09-09 16:15',
+    apiId: 7,
+  },
+  {
+    api: 'https://coe.99bill.com/coral/business/orgInfo/getTrustbrandInfo',
+    version: '1.0',
+    name: '产品信息查询',
+    moduleName: '模块名称',
+    method: 'post',
+    changeTime: '2020-09-09 16:15',
+    apiId: 7,
+  },
+  {
+    api: 'https://coe.99bill.com/coral/business/orgInfo/getTrustbrandInfo',
+    version: '1.0',
+    name: '产品信息查询',
+    moduleName: '模块名称',
+    method: 'post',
+    changeTime: '2020-09-09 16:15',
+    apiId: 8,
+  },
+  {
+    api: 'https://coe.99bill.com/coral/business/orgInfo/getTrustbrandInfo',
+    version: '1.0',
+    name: '产品信息查询',
+    moduleName: '模块名称',
+    method: 'post',
+    changeTime: '2020-09-09 16:15',
+    apiId: 9,
+  },
+];
+const title = [
+  {
+    api: '接口地址',
+    version: '版本',
+    name: '接口名称',
+    moduleName: '模块名称',
+    method: '请求方法',
+    changeTime: '修改时间',
   },
 ];
 
+const colRest = {
+  sm: 4,
+  xs: 24,
+};
+
 // 路由跳转
 
-const routh = (apiId: string) => {
+const routh = (apiId: string | number | any) => {
   history.push({
     pathname: '/cloud/project-detail/api-detail',
     query: {
@@ -40,15 +130,26 @@ const routh = (apiId: string) => {
 
 const ListContent = (data: ListContentProps) => {
   const { api, version, name, moduleName, method, changeTime } = data;
-
   return (
-    <Row>
-      <Col>{name}</Col>
-      <Col>{api}</Col>
-      <Col>{version}</Col>
-      <Col>{moduleName}</Col>
-      <Col>{method}</Col>
-      <Col>{changeTime}</Col>
+    <Row style={{ flex: 1 }} align="middle">
+      <Col {...colRest} sm={2}>
+        {name}
+      </Col>
+      <Col {...colRest} sm={13}>
+        {api}
+      </Col>
+      <Col {...colRest} sm={1}>
+        {version}
+      </Col>
+      <Col {...colRest} sm={2}>
+        {moduleName}
+      </Col>
+      <Col {...colRest} sm={2}>
+        {method}
+      </Col>
+      <Col {...colRest} sm={4}>
+        {changeTime}
+      </Col>
     </Row>
   );
 };
@@ -63,12 +164,11 @@ function ProjectDetail() {
    */
 
   const pageOnchange = (pageNo: number) => {
-    console.log('%c 🍥 pageNo: ', 'font-size:20px;background-color: #EA7E5C;color:#fff;', pageNo);
     setCurrentPage(pageNo);
   };
   return (
     <PageContainer>
-      <Space direction="vertical">
+      <Space direction="vertical" style={{ width: '100%' }}>
         <Card bordered={false}>
           <Row>
             <Col sm={8} xs={24}>
@@ -82,10 +182,28 @@ function ProjectDetail() {
             </Col>
           </Row>
         </Card>
-        <Card bordered={false}>
-          <Button type="dashed" style={{ width: '100%', marginBottom: 8 }} icon="plus">
+        <Card bordered={false} style={{ marginTop: '24px' }}>
+          <Button type="dashed" style={{ width: '100%', marginBottom: 8 }} icon={<PlusOutlined />}>
             添加
           </Button>
+          <List
+            size="large"
+            rowKey="id"
+            // loading={loading}
+            // pagination={paginationProps}
+            dataSource={title}
+            renderItem={(item) => (
+              <List.Item
+                actions={[
+                  <Button type="link" style={{ color: '#000000' }}>
+                    操作 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </Button>,
+                ]}
+              >
+                <ListContent {...item} />
+              </List.Item>
+            )}
+          />
           <List
             size="large"
             rowKey="id"
@@ -95,18 +213,21 @@ function ProjectDetail() {
             renderItem={(item) => (
               <List.Item
                 actions={[
-                  <Button type="link" onClick={() => routh('123')}>
+                  <Button type="link" onClick={() => routh(item.apiId)}>
                     查看详情
                   </Button>,
                 ]}
               >
-                <List.Item.Meta description={item.api} />
+                {/* <List.Item.Meta description={item.name} /> */}
                 <ListContent {...item} />
               </List.Item>
             )}
           />
         </Card>
       </Space>
+      <br />
+      <br />
+      <br />
       <Pagin total={total} onChange={pageOnchange} current={currentPage} />
     </PageContainer>
   );
