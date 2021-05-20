@@ -12,7 +12,7 @@ export declare type RegisterParamsType = LoginParamsType & {
 export async function fakeAccountLogin(params: LoginParamsType) {
   return request('/api/login/account', {
     method: 'POST',
-    data: params,
+    data: params
   });
 }
 export async function register(params: LoginParamsType) {
