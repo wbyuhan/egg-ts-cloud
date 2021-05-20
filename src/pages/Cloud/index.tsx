@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { Card, Space, Row, Col, Button, Descriptions } from 'antd';
+import { Card, Space, Row, Col, Button, Descriptions, Drawer } from 'antd';
 import { history } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 import Pagin from './components/Pagin';
 
 const list = ['a', 'b', 'c', 'd'];
+const data: { test: string; id: number }[] = [];
+// eslint-disable-next-line no-plusplus
+for (let i = 0; i < 300; i++) {
+  data.push({
+    test: 'aaaaaaaaaaaa',
+    id: i,
+  });
+}
 
 // 路由跳转
 const routh = (projectId: string) => {
@@ -17,6 +25,14 @@ const routh = (projectId: string) => {
 };
 
 function Cloud() {
+  const [visible, setVisible] = useState(false);
+  const showDrawer = () => {
+    setVisible(true);
+  };
+  const onClose = () => {
+    setVisible(false);
+  };
+  //
   const [currentPage, setCurrentPage] = useState<number>(1);
   const total = 200;
 
@@ -52,6 +68,23 @@ function Cloud() {
           </Card>
         ))}
       </Space>
+      <Button type="primary" onClick={showDrawer}>
+        Open
+      </Button>
+      {data.map((item) => (
+        <h2 key={item.id}>{item.test}</h2>
+      ))}
+      <Drawer
+        title="Basic Drawer"
+        placement="right"
+        closable={false}
+        onClose={onClose}
+        visible={visible}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
       <Pagin total={total} onChange={pageOnchange} current={currentPage} />
     </PageContainer>
   );
