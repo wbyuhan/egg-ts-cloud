@@ -38,6 +38,7 @@
         "test": "umi test",
         "test:all": "node ./tests/run-tests.js",
         "test:component": "umi test ./src/components",
+        "push": "git add . && git commit -m add && git pull && git pus",
         "tsc": "tsc --noEmit"
     },
     "lint-staged": {
@@ -65,6 +66,7 @@
         "lodash": "^4.17.11",
         "moment": "^2.25.3",
         "omit.js": "^2.0.2",
+        "prop-types": "^15.7.2",
         "react": "^16.14.0",
         "react-dev-inspector": "^1.1.1",
         "react-dom": "^17.0.0",
