@@ -38,7 +38,7 @@
         "test": "umi test",
         "test:all": "node ./tests/run-tests.js",
         "test:component": "umi test ./src/components",
-        "push": "git add . && git commit -m add && git pull && git pus",
+        "push": "git add . && git commit -m add && git pull && git push",
         "tsc": "tsc --noEmit"
     },
     "lint-staged": {
