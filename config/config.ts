@@ -1,4 +1,3 @@
-// https://umijs.org/config/
 import { defineConfig } from 'umi';
 // import ZipPlugin from 'zip-webpack-plugin';
 import defaultSettings from './defaultSettings';
