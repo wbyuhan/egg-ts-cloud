@@ -41,7 +41,7 @@ const errorHandler = (error: { response: Response }): Response => {
   return response;
 };
 
-const PRODUCT_URL = process.env.NODE_ENV === 'production' ? `http://www.moxueqian.com:8007` : '';
+const PRODUCT_URL = process.env.NODE_ENV === 'production' ? `http://www.moxueqian.com:8700` : '';
 /** 配置request请求时的默认参数 */
 const request = extend({
   errorHandler, // 默认错误处理
