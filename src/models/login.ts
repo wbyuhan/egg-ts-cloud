@@ -38,6 +38,7 @@ const Model: LoginModelType = {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
+      console.log('%c 🍱 response: ', 'font-size:20px;background-color: #93C0A4;color:#fff;', response);
       yield put({
         type: 'changeLoginStatus',
         payload: response,

@@ -8,8 +8,7 @@
 export default {
   dev: {
     '/api': {
-      // target: 'http://127.0.0.1:7004',
-      target: 'http://1.116.209.210:7001',
+      target: 'http://www.moxueqian.com:8700',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },

@@ -41,11 +41,18 @@ const errorHandler = (error: { response: Response }): Response => {
   return response;
 };
 
+const PRODUCT_URL = process.env.NODE_ENV === 'production' ? `http://www.moxueqian.com:8007` : '';
 /** 配置request请求时的默认参数 */
 const request = extend({
-  headers: { Authorization: getToken() },
   errorHandler, // 默认错误处理
+  headers: { Authorization: getToken() },
   credentials: 'include', // 默认请求是否带上cookie
+});
+request.interceptors.request.use((url, options) => {
+  return {
+    url: `${PRODUCT_URL}${url}`,
+    options: { ...options, interceptors: true },
+  };
 });
 
 export default request;
